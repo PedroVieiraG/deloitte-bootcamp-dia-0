@@ -1,7 +1,6 @@
 Sistema de Controle de Check-in - Coworking
-
-Este projeto é uma aplicação de console desenvolvida em C# para gerenciar o registro de visitantes em um espaço de coworking.
 ---
+Este projeto é uma aplicação de console desenvolvida em C# para gerenciar o registro de visitantes em um espaço de coworking.
  Funcionalidades
 - Cadastrar Visitantes: Registro de Nome, Documento e identificação de primeira visita.
 - Listar: Exibe todos os visitantes cadastrados.
@@ -11,3 +10,4 @@ Este projeto é uma aplicação de console desenvolvida em C# para gerenciar o r
 Tecnologias
 - Linguagem: C# 
 - Framework: .NET 10
+
