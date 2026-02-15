@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\aluno\\Desktop\\bootcamp_dtt\\dia06\\Projeto_de_Estudos\\MinhaApi\\MinhaApi.csproj": {}
+    "C:\\Users\\pedro\\OneDrive\\Área de Trabalho\\dtt\\deloitte_bootcamp\\dia6\\Projeto_de_Estudos\\MinhaApi\\MinhaApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\aluno\\Desktop\\bootcamp_dtt\\dia06\\Projeto_de_Estudos\\MinhaApi\\MinhaApi.csproj": {
+    "C:\\Users\\pedro\\OneDrive\\Área de Trabalho\\dtt\\deloitte_bootcamp\\dia6\\Projeto_de_Estudos\\MinhaApi\\MinhaApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\aluno\\Desktop\\bootcamp_dtt\\dia06\\Projeto_de_Estudos\\MinhaApi\\MinhaApi.csproj",
+        "projectUniqueName": "C:\\Users\\pedro\\OneDrive\\Área de Trabalho\\dtt\\deloitte_bootcamp\\dia6\\Projeto_de_Estudos\\MinhaApi\\MinhaApi.csproj",
         "projectName": "MinhaApi",
-        "projectPath": "C:\\Users\\aluno\\Desktop\\bootcamp_dtt\\dia06\\Projeto_de_Estudos\\MinhaApi\\MinhaApi.csproj",
-        "packagesPath": "C:\\Users\\aluno\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\aluno\\Desktop\\bootcamp_dtt\\dia06\\Projeto_de_Estudos\\MinhaApi\\obj\\",
+        "projectPath": "C:\\Users\\pedro\\OneDrive\\Área de Trabalho\\dtt\\deloitte_bootcamp\\dia6\\Projeto_de_Estudos\\MinhaApi\\MinhaApi.csproj",
+        "packagesPath": "C:\\Users\\pedro\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\pedro\\OneDrive\\Área de Trabalho\\dtt\\deloitte_bootcamp\\dia6\\Projeto_de_Estudos\\MinhaApi\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\aluno\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\pedro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -61,6 +67,10 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[10.0.0, )"
+            },
+            "StackExchange.Redis": {
+              "target": "Package",
+              "version": "[2.8.10, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

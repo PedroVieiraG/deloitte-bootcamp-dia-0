@@ -1,30 +1,63 @@
 namespace MinhaApi.Models
 {
-    public enum StatusLote
-    {
-        EmEstoque = 0,
-        EmTransporte = 1,
-        Embarcado = 2
-    }
+    public enum StatusLote { EmEstoque = 0, EmTransporte = 1, Embarcado = 2 }
+    public enum QualidadeLote { Premium, Padrao, Baixa }
 
     public class LoteMinerio
     {
-        public int Id { get; set; }
+        // Propriedades com Private Set para garantir o encapsulamento
+        public int Id { get; private set; }
+        public string CodigoLote { get; init; } = "";
+        public string MinaOrigem { get; init; } = "";
+        public decimal TeorFe { get; init; }
+        public decimal Umidade { get; init; }
+        public decimal? SiO2 { get; init; }
+        public decimal? P { get; init; }
+        public decimal Toneladas { get; init; }
+        public DateTime DataProducao { get; init; }
+        public StatusLote Status { get; private set; }
+        public string LocalizacaoAtual { get; private set; } = "";
+        public List<HistoricoMovimentacao> Historico { get; private set; } = new();
 
-        // Identificação e rastreio
-        public string CodigoLote { get; set; } = "";   // Ex.: "MNA-2026-000123"
-        public string MinaOrigem { get; set; } = "";   // Ex.: "Carajás N4E"
+        // --- Regras de Negócio Internas (Read-only Properties) ---
 
-        // Qualidade (simplificada)
-        public decimal TeorFe { get; set; }            // % Ferro (0-100)
-        public decimal Umidade { get; set; }           // % Umidade (0-100)
-        public decimal? SiO2 { get; set; }             // opcional
-        public decimal? P { get; set; }                // opcional (fósforo)
+        public QualidadeLote Qualidade => (TeorFe, Umidade, SiO2 ?? 0) switch
+        {
+            (>= 65, <= 6, <= 3) => QualidadeLote.Premium,
+            (>= 62, <= 8, _)     => QualidadeLote.Padrao,
+            _                   => QualidadeLote.Baixa
+        };
 
-        // Logística básica
-        public decimal Toneladas { get; set; }         // t
-        public DateTime DataProducao { get; set; }     // quando foi gerado o lote
-        public StatusLote Status { get; set; }         // estoque / transporte / embarcado
-        public string LocalizacaoAtual { get; set; } = ""; // "Mina", "Pátio Carajás", "EFVM - Trem 123", "Porto Tubarão", etc.
+        public decimal PrecoPorTonelada => Qualidade switch
+        {
+            QualidadeLote.Premium => 185.50m,
+            QualidadeLote.Padrao  => 156.90m,
+            _                     => 98.00m
+        };
+
+        // --- Métodos de Comportamento ---
+
+        public decimal CalcularValorLiquido()
+        {
+            decimal penalidadeUmidade = Umidade > 8 ? (Umidade - 8) * 1.50m * Toneladas : 0m;
+            return (PrecoPorTonelada * Toneladas) - penalidadeUmidade;
+        }
+
+        public void RegistrarMovimentacao(StatusLote novoStatus, string novoLocal)
+        {
+            // Validação de transição de status
+            if (Status == StatusLote.Embarcado)
+                throw new InvalidOperationException("Não é possível movimentar um lote já embarcado.");
+
+            Status = novoStatus;
+            LocalizacaoAtual = novoLocal;
+
+            Historico.Add(new HistoricoMovimentacao
+            {
+                Status = novoStatus,
+                Local = novoLocal,
+                Data = DateTime.UtcNow
+            });
+        }
     }
 }
